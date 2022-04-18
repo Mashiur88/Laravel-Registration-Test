@@ -28,13 +28,13 @@ p.header
 .sidebar {
     background-color: green;
     border-style: solid;
-    width: 25.1%;
+    width: 20.1%;
     text-align: center;
 }
 .content {
     background-color: lightblue;
     border-style: solid;
-    width: 74%;
+    width: 79%;
     text-align: center;
 }
 .footer {
