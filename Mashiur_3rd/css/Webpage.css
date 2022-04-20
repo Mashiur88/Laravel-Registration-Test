@@ -97,6 +97,17 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
+#limit
+{
+  width: 10%;
+  padding: 6px 25px;
+  margin: 8px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 #password
 {
   width: 80%;
@@ -126,6 +137,18 @@ input[type=submit] {
   background-color: #2091b0;
   color: white;
   padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#send
+{
+  width: 12%;
+  background-color: #2091b0;
+  color: white;
+  padding: 9px 10px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;

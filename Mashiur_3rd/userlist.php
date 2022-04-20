@@ -3,8 +3,37 @@ include "./controller/actionUserlist.php";
 include "header.php";
 ?>
 <div class="main-container">
-    <?php include "sidebar.php"; ?>
+    <?php include "sidebar.php"; ?> 
+    
     <div class="content">
+        <?php
+        $sql1 = "SELECT COUNT(*) AS 'rows' FROM `userlist`";
+        $rowCount = mysqli_query($conn, $sql1);
+        foreach($rowCount as $row)
+        {
+            $rows = $row['rows'];
+        }
+        $pageno= 1;
+        $limit= 2;
+        $pageCount = ceil($rows/$limit);
+        if(isset($_GET['pageno'])&&isset($_GET['limit']))
+        { 
+            $pageno = $_GET['pageno'];
+            $limit= $_GET['limit'];
+        }
+        $offset = ($pageno-1) * $limit;
+
+        //pagination($limit,$offset);
+        if(isset($offset))
+        {
+        $sql2 = "SELECT * FROM `userlist` LIMIT '$limit' OFFSET '$offset'";
+        print_r($sql2);
+        $result = mysqli_query($conn, $sql2);
+        //print_r($result);
+        //header('Location: ../userlist.php');
+        }   
+        
+        ?>
         <div class="search">
         <form method="POST" enctype="multipart/form-data">
         <input type="text" name="search" id="search" placeholder="type here">
@@ -22,9 +51,10 @@ include "header.php";
                 <th>Status</th>
             </tr>
             <?php
-            if ($result->num_rows > 0) {
+            if (mysqli_num_rows($result) > 0) {
                 
-            while ($row = $result->fetch_assoc()) {
+            while ($row = mysqli_fetch_assoc($result)) 
+            {
             if ($row["gender"] == 1) {
             $temp = "male";
             }
@@ -54,14 +84,30 @@ include "header.php";
             }
             }
             else {
-                 echo "<td colspan = '5'> No Data Found </td>";
+                 echo "<td colspan = '6'> No Data Found </td>";
             }
-                    
-                    
-            
-                    
+         
             ?>
         </table>
+        <div>
+            <form method='POST'>
+            <select id='limit' name='limit'>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+            <input type="submit" name="send" id="send" value="setlimit">
+            </form>
+            <?php
+            for($i=1;$i<=$pageCount;$i++)
+        {  
+           
+           echo '<a href="userlist.php?pageno='. $i .'&limit= '. $limit .'"><button>'. $i .'</button></a>';
+        
+        }  echo $offset; 
+            ?>
+        </div>
     </div>
 </div>
 <?php include "footer.php"; ?>

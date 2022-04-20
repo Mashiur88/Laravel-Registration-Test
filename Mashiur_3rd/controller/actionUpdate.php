@@ -9,13 +9,13 @@ $dbname = "user";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (conn_connect_error()) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 $msg = "Connected successfully";
 $id=$_GET['id'];
 $sql = "SELECT * FROM `userlist` WHERE id =$id";
-$user= $conn->query($sql);
+$user = mysqli_query($conn, $sql);
 
 if(isset($_POST['save']))
 {
@@ -26,15 +26,15 @@ if(isset($_POST['save']))
     $status=$_POST['status'];
 $sql2 = "UPDATE `userlist` SET first_name='$fname', last_name='$lname', address='$address', gender='$gender', status='$status' WHERE id =$id";
 
-echo $sql2;
-$result = $conn->query($sql2);
-if ($conn->query($sql2) === TRUE) {
+$result = mysqli_query($conn, $sql2);
+
+if (mysqli_query($conn, $sql2) === TRUE) {
         echo "New record Updated successfully";
         header("Location: userlist.php");
 } 
 else 
 {
-        echo "Error: " . $sql2 . "<br>" . $conn->error;
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 }
 
 }

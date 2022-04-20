@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 $name = $password = "";
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "user";
-
+$result="";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -16,12 +16,14 @@ if ($conn->connect_error) {
 $msg = "Connected successfully";
 if (isset($_POST['submit'])) {
     $name = $_POST['uname'];
-    $pass = $_POST['password'];
+    $temp = md5($_POST['password']);
+    $pass = substr($temp, 0,20);
     $sql = "SELECT * FROM `userlist` WHERE user_name ='$name' AND password ='$pass'";
-    $user=$conn->query($sql);
+    $user = mysqli_query($conn, $sql);
     //echo $user;
-    if ($user->num_rows>0)
+    if (mysqli_num_rows($user) > 0)
     {
+        $_SESSION['user']=$name;
         echo "Login Successfully";
         header("Location: Webpage.php");
     } else 
