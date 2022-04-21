@@ -7,32 +7,52 @@ include "header.php";
     
     <div class="content">
         <?php
+        $result=[];
+        $pageno= 1;
+        $limit= 2;
+        if(isset($_GET['pageno'])&&isset($_GET['limit']))
+        { 
+            $pageno = $_GET['pageno'];
+            $limit= $_GET['limit'];
+        }
+        if(isset($_POST['send']))
+        {
+            $limit = $_POST['limit'];
+            $offset=0;
+        }
         $sql1 = "SELECT COUNT(*) AS 'rows' FROM `userlist`";
         $rowCount = mysqli_query($conn, $sql1);
         foreach($rowCount as $row)
         {
             $rows = $row['rows'];
         }
-        $pageno= 1;
-        $limit= 2;
+        
         $pageCount = ceil($rows/$limit);
-        if(isset($_GET['pageno'])&&isset($_GET['limit']))
-        { 
-            $pageno = $_GET['pageno'];
-            $limit= $_GET['limit'];
-        }
+        
         $offset = ($pageno-1) * $limit;
-
-        //pagination($limit,$offset);
-        if(isset($offset))
+        
+        if(isset($_POST['find']))
         {
-        $sql2 = "SELECT * FROM `userlist` LIMIT '$limit' OFFSET '$offset'";
+            $name=$_POST['search'];
+            $sql3="SELECT * FROM `userlist` WHERE first_name LIKE '%$name%' OR last_name LIKE '%$name%' LIMIT $limit";
+            print_r($sql3);
+            $result = mysqli_query($conn, $sql3);
+        }
+        elseif(isset($offset))
+        {
+        $sql2 = "SELECT * FROM `userlist` LIMIT $limit OFFSET $offset";
         print_r($sql2);
         $result = mysqli_query($conn, $sql2);
         //print_r($result);
         //header('Location: ../userlist.php');
-        }   
+        }
+        else
+        {    
+            $sql = "SELECT * FROM `userlist`";
+            $result = mysqli_query($conn, $sql);
+        }
         
+           
         ?>
         <div class="search">
         <form method="POST" enctype="multipart/form-data">
@@ -49,6 +69,7 @@ include "header.php";
                 <th>Gender</th>
                 <th>Address</th>
                 <th>Status</th>
+                <td colspan="2"><b>Action</b></td>
             </tr>
             <?php
             if (mysqli_num_rows($result) > 0) {
@@ -92,20 +113,29 @@ include "header.php";
         <div>
             <form method='POST'>
             <select id='limit' name='limit'>
+                <option value="3">3</option>
+                <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
             </select>
             <input type="submit" name="send" id="send" value="setlimit">
             </form>
             <?php
-            for($i=1;$i<=$pageCount;$i++)
-        {  
-           
-           echo '<a href="userlist.php?pageno='. $i .'&limit= '. $limit .'"><button>'. $i .'</button></a>';
-        
-        }  echo $offset; 
+            $x=1; $y=$pageCount;      
+            $y2=ceil( $pageCount / 3) * 3;
+            echo $x>1 ?  '<a href="userlist.php?pageno='. $x-1 .'&limit= '. $limit .'">Prev</a>' : null;
+            for($i=$x;$i<=$y;$i++)
+            {  
+               
+               echo '<a href="userlist.php?pageno='. $i .'&limit= '. $limit .'"><button>'. $i .'</button></a>';
+               $x =(empty($pageno) || ($pageno>0 && $pageno<=3)) ? 1 :(floor($pageno/3)*3)+1;
+               $y = (empty($pageno) || ($pageno>0 && $pageno<=3)) ? ($pageCount < 3 ? $pageCount : 3) : ($pageCount < $y2 ? $pageCount : $y2); 
+               
+            } 
+            echo $y<$pageCount ? '<a href="userlist.php?pageno='. ($y+1) .'&limit= '. $limit .'">Next</a>' : NULL;
+            
             ?>
         </div>
     </div>
