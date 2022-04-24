@@ -1,7 +1,7 @@
 <div class="sidebar">
     <p><b>Sidebar</b></p>
     <ul>
-        <li><a href="Webpage.php">Home</a></li>
+        <li<?php if(isset($_GET['menu']) && $_GET['menu']=='webpage'){ echo 'class="active"';}?>><a href="Webpage.php?menu=webpage">Home</a></li>
         <li><a href="gallery.php">Gallery</a></li>
         <li><a href="contact.php">Contact</a></li>
         <li><a href="about.php">About</a></li>

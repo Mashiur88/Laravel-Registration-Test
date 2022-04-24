@@ -66,6 +66,25 @@ li a {
     text-decoration: none;
     border: 1px solid black;
 }
+.sidebar ul li a:link, a:active
+{
+    background-color: #555;
+    display: block;
+    color: yellow;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid black;
+}
+
+.sidebar ul li a:hover, a:visited
+{
+    background-color: #555;
+    display: block;
+    color: whitesmoke;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid black;
+}
 #search
 {
   width: 40%;

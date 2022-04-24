@@ -116,14 +116,15 @@ include "header.php";
         <div>
             <form method='POST'>
                 <select id='limit' name='limit'>
-                    <option value=""<?php ($limit==2)? 'selected' : ''; ?>>Default</option>
-                    <option value="3"<?php ($limit==3)? 'selected' : ''; ?>>3</option>
-                    <option value="4" <?php ($limit==4)? 'selected' : ''; ?>>4</option>
-                    <option value="5" <?php ($limit==5)? 'selected' : ''; ?>>5</option>
-                    <option value="6" <?php ($limit==6)? 'selected' : ''; ?>>6</option>
-                    <option value="10" <?php ($limit==10)? 'selected' : ''; ?>>10</option>
-                    <option value="11" <?php ($limit==11)? 'selected' : ''; ?>>11</option>
-                    <option value="12" <?php ($limit==12)? 'selected' : ''; ?>>12</option>
+                    <!--isset($limit)&& -->
+                    <option value=""<?php echo (isset($limit)&&$limit==2)? 'selected' : ''; ?>>Default</option>
+                    <option value="3"<?php echo (isset($limit)&&$limit==3)? 'selected' : ''; ?>>3</option>
+                    <option value="4" <?php echo (isset($limit)&&$limit==4)? 'selected' : ''; ?>>4</option>
+                    <option value="5" <?php echo (isset($limit)&&$limit==5)? 'selected' : ''; ?>>5</option>
+                    <option value="6" <?php echo (isset($limit)&&$limit==6)? 'selected' : ''; ?>>6</option>
+                    <option value="10" <?php echo (isset($limit)&&$limit==10)? 'selected' : ''; ?>>10</option>
+                    <option value="11" <?php echo (isset($limit)&&$limit==11)? 'selected' : ''; ?>>11</option>
+                    <option value="12" <?php echo (isset($limit)&&$limit==12)? 'selected' : ''; ?>>12</option>
                 </select>
                 <input type="submit" name="send" id="send" value="setlimit">
             </form>
