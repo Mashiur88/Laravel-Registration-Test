@@ -8,25 +8,28 @@ include "header.php";
     <div class="content">
         <?php
         $result=[];
-        $pageno= 1;
-        $limit= 2;
+        
         if(isset($_GET['pageno'])&&isset($_GET['limit']))
         { 
             $pageno = $_GET['pageno'];
             $limit= $_GET['limit'];
         }
+        else
+        {
+            $pageno= 1;
+            $limit= 2;
+        }
         if(isset($_POST['send']))
         {
             $limit = $_POST['limit'];
-            $offset=0;
+            $pageno=1;
         }
         $sql1 = "SELECT COUNT(*) AS 'rows' FROM `userlist`";
         $rowCount = mysqli_query($conn, $sql1);
         foreach($rowCount as $row)
         {
             $rows = $row['rows'];
-        }
-        
+        } 
         $pageCount = ceil($rows/$limit);
         
         $offset = ($pageno-1) * $limit;
@@ -44,7 +47,7 @@ include "header.php";
         print_r($sql2);
         $result = mysqli_query($conn, $sql2);
         //print_r($result);
-        //header('Location: ../userlist.php');
+        //header('Location: userlist.php');
         }
         else
         {    
@@ -112,29 +115,31 @@ include "header.php";
         </table>
         <div>
             <form method='POST'>
-            <select id='limit' name='limit'>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-            <input type="submit" name="send" id="send" value="setlimit">
+                <select id='limit' name='limit'>
+                    <option value=""<?php ($limit==2)? 'selected' : ''; ?>>Default</option>
+                    <option value="3"<?php ($limit==3)? 'selected' : ''; ?>>3</option>
+                    <option value="4" <?php ($limit==4)? 'selected' : ''; ?>>4</option>
+                    <option value="5" <?php ($limit==5)? 'selected' : ''; ?>>5</option>
+                    <option value="6" <?php ($limit==6)? 'selected' : ''; ?>>6</option>
+                    <option value="10" <?php ($limit==10)? 'selected' : ''; ?>>10</option>
+                    <option value="11" <?php ($limit==11)? 'selected' : ''; ?>>11</option>
+                    <option value="12" <?php ($limit==12)? 'selected' : ''; ?>>12</option>
+                </select>
+                <input type="submit" name="send" id="send" value="setlimit">
             </form>
-            <?php
-            $x=1; $y=$pageCount;      
-            $y2=ceil( $pageCount / 3) * 3;
-            echo $x>1 ?  '<a href="userlist.php?pageno='. $x-1 .'&limit= '. $limit .'">Prev</a>' : null;
+            <?php  
+            //($pageno%3==0) ? $x :
+            $y2=ceil( $pageno / 3) * 3;
+            $x =(empty($pageno) || ($pageno>0 && $pageno<=3)) ? 1 : (($pageno>3 && $pageno%3==0) ? ($pageno-2) : (floor($pageno/3)*3)+1);
+            $y = (empty($pageno) || ($pageno>0 && $pageno<=3)) ? ($pageCount < 3 ? $pageCount : 3) : ($pageCount < $y2 ? $pageCount : $y2);
+            echo $x>1 ?  '<a href="userlist.php?pageno=1&limit='. $limit.'"><button><<</button></a>' : '';
+            echo $x>1 ?  '<a href="userlist.php?pageno='. ($x-1) .'&limit='. $limit.'"><button>Prev</button></a>' : '';
             for($i=$x;$i<=$y;$i++)
-            {  
-               
-               echo '<a href="userlist.php?pageno='. $i .'&limit= '. $limit .'"><button>'. $i .'</button></a>';
-               $x =(empty($pageno) || ($pageno>0 && $pageno<=3)) ? 1 :(floor($pageno/3)*3)+1;
-               $y = (empty($pageno) || ($pageno>0 && $pageno<=3)) ? ($pageCount < 3 ? $pageCount : 3) : ($pageCount < $y2 ? $pageCount : $y2); 
-               
+            {   
+               echo '<a href="userlist.php?pageno='. $i .'&limit='. $limit .'"><button>'. $i .'</button></a>';
             } 
-            echo $y<$pageCount ? '<a href="userlist.php?pageno='. ($y+1) .'&limit= '. $limit .'">Next</a>' : NULL;
+            echo $y<$pageCount ?'<a href="userlist.php?pageno='. ($y+1) .'&limit= '. $limit.'"><button>Next</button></a>' : '';
+            echo $y<$pageCount ?'<a href="userlist.php?pageno='. ($pageCount) .'&limit= '. $limit.'"><button>>></button></a>' : '';
             
             ?>
         </div>
