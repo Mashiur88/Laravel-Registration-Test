@@ -43,15 +43,18 @@ p.header
     text-align: center;
     height: 50px;
 }
-li a:hover {
-    background-color: #555;
-    color: green;
+a {
+    text-decoration: none;
 }
 li a:active {
     background-color: #555;
     color: green;
 }
-ul {
+li a:hover {
+    background-color: #555;
+    color: green;
+}
+.list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -66,16 +69,7 @@ li a {
     text-decoration: none;
     border: 1px solid black;
 }
-.sidebar ul li a:link, a:active
-{
-    background-color: #555;
-    display: block;
-    color: yellow;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid black;
-}
-
+/*
 .sidebar ul li a:hover, a:visited
 {
     background-color: #555;
@@ -84,7 +78,22 @@ li a {
     padding: 8px 16px;
     text-decoration: none;
     border: 1px solid black;
+}   a:link,  
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid black;
+
+*/
+ .sidebar ul li .active a:link a:active
+{
+    background-color: #555;
+    display: block;
+    color: yellow;
+    padding: 8px 16px;
+    text-decoration: none;
+     border: 1px solid black;
 }
+
 #search
 {
   width: 40%;
@@ -207,6 +216,11 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
+}
+
+a:visited
+{
+    border: 2px solid black;
 }
 
 table
