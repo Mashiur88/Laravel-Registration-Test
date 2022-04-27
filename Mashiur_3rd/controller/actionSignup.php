@@ -38,10 +38,21 @@ if (isset($_POST['save'])) {
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Check connection
-    if (mysqli_connect_error()) {
+    if (mysqli_connect_error()) 
+    {
         die("Connection failed: " . mysqli_connect_error());
     }
     $msg = "Connected successfully";
+    echo $msg;
+    
+    
+//    $sql2 = "SELECT * FROM `division`";
+//    if (mysqli_query($conn, $sql2) === TRUE)
+//    {
+//    $divisions = mysqli_query($conn, $sql2);
+//    }
+//    print_r($divisions);
+    
     if(isset($gender)&&isset($status))
     {
     $sql = "INSERT INTO `userlist` (`first_name`, `last_name`,`user_name`, `password`, `address`, `gender`, `status`)

@@ -22,7 +22,7 @@ include "header.php";
     <?php include "sidebar.php"; ?> 
     
     <div class="content">
-        <h1>Country </h1>
+        <h1>Address</h1>
         <div>
         <label>Division</label>
         <select id="division" name="division" onchange="showDistrict(this.value)">
@@ -35,8 +35,12 @@ include "header.php";
             ?>
         </select><br>   
         <label>District</label>
-        <select name="district" id="district"> 
-            <option value=0>Select District</option>
+        <select name="district" id="district" onchange="showThana(this.value)"> 
+            <option value="">Select District</option>
+        </select><br>
+        <label>Thana</label>
+        <select name="thana" id="thana"> 
+            <option value="">Select Thana</option>
         </select>
         </div>
     </div>

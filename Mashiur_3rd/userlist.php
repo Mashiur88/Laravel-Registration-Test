@@ -72,6 +72,7 @@ include "header.php";
                 <th>Gender</th>
                 <th>Address</th>
                 <th>Status</th>
+                <th>Change status</th>
                 <td colspan="2"><b>Action</b></td>
             </tr>
             <?php
@@ -90,24 +91,29 @@ include "header.php";
             {
                 $temp1 = "Inactive";
             }
-             else if ($row["status"] == 1) {
-                $temp1 = "Active";
+             else if ($row["status"] == 1) 
+            {
+                 $temp1 = "Active";
             }
-            echo "<tr>
-                <td>" . $row["first_name"] . "</td>
-                <td>" . $row["last_name"] . "</td>
-                <td>" . $row["user_name"] . "</td>
-                <td>" . $temp . "</td>
-                <td>" . $row["address"] . "</td>
-                <td>" . $temp1 . "</td>
+            $id = $row['id'];
+            $stat = $row['status'];
+            ?>
+            <tr>
+                <td><?php echo $row["first_name"] ?></td>
+                <td><?php echo $row["last_name"] ?></td>
+                <td><?php echo $row["user_name"] ?></td>
+                <td><?php echo $temp ?></td>
+                <td><?php echo $row["address"] ?></td>
+                <td id='cxngstatus'><?php echo $temp1 ?></td>
+                <td><button onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo ($row['status']>0)? 'Inactive' : 'Active';?></button></td>
                 <td><a href = 'updateUser.php?id=".$row["id"]."'><button>Edit</button></a></td>
                 <td><a href = './controller/actionDelete.php?id=".$row["id"]."'><button>Delete</button></a></td>
-                
-            </tr>";
-               
+          </tr>
+            <?php
             }
             }
-            else {
+            else
+            {
                  echo "<td colspan = '6'> No Data Found </td>";
             }
          
@@ -146,4 +152,5 @@ include "header.php";
         </div>
     </div>
 </div>
+<script src='./js/status.js'></script>
 <?php include "footer.php"; ?>

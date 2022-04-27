@@ -13,18 +13,21 @@ if (mysqli_connect_error()) {
 $msg = "Connected successfully";
 echo $msg;
 $id = $_GET['id'];
-$sql = "SELECT * FROM district where division_id = $id";
-$districts = mysqli_query($conn, $sql);
-if (mysqli_num_rows($districts) > 0) 
+$sql = "SELECT * FROM thana where district_id = $id";
+$thana = mysqli_query($conn, $sql);
+if (mysqli_num_rows($thana) > 0) 
 {
-         echo "<option value=''>Select District</option>";
-    while ($row = mysqli_fetch_assoc($districts)) 
+         echo "<option value=''>Select Thana</option>";
+    while ($row = mysqli_fetch_assoc($thana)) 
         {
             echo "<option value=".$row['id'].">". $row['name'] ."</option>";
-        }        
+        }
+        
 }
 else
 {
-    echo "<option value=''>No District Found</option>";
+    echo "<option value=''>No Thana Found</option>";
 }
+    
+
 ?>
