@@ -15,15 +15,15 @@ include "header.php";
             <input type="text" name="uname" id="uname"><br>
             <label>Password:</label>
             <input type="password" name="password" id="password"><br>
-<!--            <div id="state">
+ <!--           <div id="state">
             <label>Division</label>
                 <select id="division" name="division" onchange="showDistrict(this.value)">
                     <option value="">Select Division</option>
                     <?php
-                   /*     foreach($divisions as $div)
-                        {
-                            echo "<option value=".$div['id'].">". $div['name'] ."</option>";
-                        } */
+//                       foreach($divisions as $div)
+//                        {
+//                            echo "<option value=".$div['id'].">". $div['name'] ."</option>";
+//                        } 
                     ?>
                 </select><br> 
             </div>

@@ -1,6 +1,7 @@
 <?php
 include "./controller/actionUserlist.php";
 include "header.php";
+
 ?>
 <div class="main-container">
     <?php include "sidebar.php"; ?> 
@@ -106,8 +107,8 @@ include "header.php";
                 <td><?php echo $row["address"] ?></td>
                 <td id='cxngstatus<?php echo $id; ?>'><?php echo $temp1 ?></td>
                 <td id='cxngstatusBtn<?php echo $id; ?>'><button onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo($row['status'] == '1')? 'Inactive' : 'Active';?></button></td>
-                <td><a href = 'updateUser.php?id=<?php echo $row["id"] ?>'><button id="btn">Edit</button></a></td>
-                <td><a href = './controller/actionDelete.php?id=<?php echo $row["id"] ?>'><button id="btn2">Delete</button></a></td>
+                <td><a href = 'updateUser.php?id=<?php echo $row["id"] ?>'><button id="btn"><i class="fa-solid fa-pen"></i></button></a></td>
+                <td><a href = './controller/actionDelete.php?id=<?php echo $row["id"] ?>'><button id="btn2"><i class="fa-solid fa-trash"></i></button></a></td>
             </tr>
             <?php
             }
