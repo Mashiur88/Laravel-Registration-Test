@@ -7,7 +7,7 @@ include "header.php";
     <div class="content">
         <h3>Registration From</h3>
         <form action="" method='POST' enctype=''>
-          <?php  foreach ($user as $value) {  ?>
+          <?php  foreach($user as $value) {  ?>
     
             <label>First Name:</label>
             <input type="text" name="fname" id="fname" value="<?php echo $value['first_name'] ?>"><br>

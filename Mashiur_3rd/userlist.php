@@ -77,7 +77,7 @@ include "header.php";
             </tr>
             <?php
             if (mysqli_num_rows($result) > 0) {
-                
+
             while ($row = mysqli_fetch_assoc($result)) 
             {
             if ($row["gender"] == 1) {
@@ -104,11 +104,11 @@ include "header.php";
                 <td><?php echo $row["user_name"] ?></td>
                 <td><?php echo $temp ?></td>
                 <td><?php echo $row["address"] ?></td>
-                <td id='cxngstatus'><?php echo $temp1 ?></td>
-                <td><button onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo ($row['status']>0)? 'Inactive' : 'Active';?></button></td>
-                <td><a href = 'updateUser.php?id=".$row["id"]."'><button>Edit</button></a></td>
-                <td><a href = './controller/actionDelete.php?id=".$row["id"]."'><button>Delete</button></a></td>
-          </tr>
+                <td id='cxngstatus<?php echo $id; ?>'><?php echo $temp1 ?></td>
+                <td id='cxngstatusBtn<?php echo $id; ?>'><button onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo($row['status'] == '1')? 'Inactive' : 'Active';?></button></td>
+                <td><a href = 'updateUser.php?id=<?php echo $row["id"] ?>'><button id="btn">Edit</button></a></td>
+                <td><a href = './controller/actionDelete.php?id=<?php echo $row["id"] ?>'><button id="btn2">Delete</button></a></td>
+            </tr>
             <?php
             }
             }
@@ -152,5 +152,5 @@ include "header.php";
         </div>
     </div>
 </div>
-<script src='./js/status.js'></script>
+<script src='js/status.js'></script>
 <?php include "footer.php"; ?>

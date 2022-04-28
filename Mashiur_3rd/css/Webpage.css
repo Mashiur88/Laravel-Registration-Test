@@ -187,6 +187,20 @@ input[type=submit]:hover {
   background-color: #3ae3fc;
 }
 
+/*#btn
+{
+    background: url(imgs/icon.png) no-repeat;
+    float: left;
+    width: 10px;
+    height: 40px;
+}
+#btn2
+{
+    background: url(imgs/icon.png) no-repeat;
+    float: left;
+    width: 10px;
+    height: 40px;
+}*/
 #address
 {
   width: 80%;
