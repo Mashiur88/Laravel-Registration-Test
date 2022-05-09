@@ -15,30 +15,32 @@ include "header.php";
             <input type="text" name="uname" id="uname"><br>
             <label>Password:</label>
             <input type="password" name="password" id="password"><br>
- <!--           <div id="state">
+            <div class="address">
+           <div id="state">
             <label>Division</label>
                 <select id="division" name="division" onchange="showDistrict(this.value)">
-                    <option value="">Select Division</option>
+                    <option value='0'>Select Division</option>
                     <?php
-//                       foreach($divisions as $div)
-//                        {
-//                            echo "<option value=".$div['id'].">". $div['name'] ."</option>";
-//                        } 
+                       foreach($divisions as $div)
+                        {
+                            echo "<option value=".$div['id'].">". $div['name'] ."</option>";
+                        } 
                     ?>
                 </select><br> 
             </div>
             <div id="zilla">
             <label>District</label>
             <select name="district" id="district" onchange="showThana(this.value)"> 
-                <option value="">Select District</option>
+                <option value='0'>Select District</option>
             </select><br>
             </div>
             <div id="upazilla">
             <label>Thana</label>
             <select name="thana" id="thana"> 
-                <option value="">Select Thana</option>
+                <option value='0'>Select Thana</option>
             </select><br>
-            </div>-->
+            </div>
+            </div><br>
             <label>Address:</label>
             <textarea name="address" id="address" placeholder="Enter Text Here.."></textarea><br>
    <!--         <label>Hobby:</label>
@@ -56,6 +58,6 @@ include "header.php";
         </form>
     </div>
 </div>
-<script src='./js/Address.js'></script>
+<script src="./js/Address.js"></script>
 <?php include "footer.php"; ?>
         

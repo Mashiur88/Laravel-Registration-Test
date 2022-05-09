@@ -38,14 +38,23 @@ include "header.php";
         if(isset($_POST['find']))
         {
             $name=$_POST['search'];
-            $sql3="SELECT * FROM `userlist` WHERE first_name LIKE '%$name%' OR last_name LIKE '%$name%' LIMIT $limit";
+            $sql3="SELECT userlist.*,division.id as divId,division.name as division,district.id as dId,district.name as district,thana.id as tId,thana.name as thana FROM `userlist`
+            LEFT JOIN `division` ON userlist.division = division.id 
+            LEFT JOIN `district` ON userlist.district = district.id
+            LEFT JOIN `thana` ON userlist.thana = thana.id 
+            WHERE first_name LIKE '%$name%' OR last_name LIKE '%$name%'
+            LIMIT $limit";
             print_r($sql3);
             $result = mysqli_query($conn, $sql3);
         }
         elseif(isset($offset))
         {
-        $sql2 = "SELECT * FROM `userlist` LIMIT $limit OFFSET $offset";
-        print_r($sql2);
+        $sql2 = "SELECT userlist.*,division.id as divId,division.name as division,district.id as dId,district.name as district,thana.id as tId,thana.name as thana FROM `userlist`
+        LEFT JOIN `division` ON userlist.division = division.id 
+        LEFT JOIN `district` ON userlist.district = district.id
+        LEFT JOIN `thana` ON userlist.thana = thana.id
+        LIMIT $limit OFFSET $offset";
+        //print_r($sql2);
         $result = mysqli_query($conn, $sql2);
         //print_r($result);
         //header('Location: userlist.php');
@@ -104,7 +113,7 @@ include "header.php";
                 <td><?php echo $row["last_name"] ?></td>
                 <td><?php echo $row["user_name"] ?></td>
                 <td><?php echo $temp ?></td>
-                <td><?php echo $row["address"] ?></td>
+                <td><?php echo $row["address"].",".$row["thana"].",".$row["district"].",".$row["division"]; ?></td>
                 <td id='cxngstatus<?php echo $id; ?>'><?php echo $temp1 ?></td>
                 <td id='cxngstatusBtn<?php echo $id; ?>'><button onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo($row['status'] == '1')? 'Inactive' : 'Active';?></button></td>
                 <td><a href = 'updateUser.php?id=<?php echo $row["id"] ?>'><button id="btn"><i class="fa-solid fa-pen"></i></button></a></td>

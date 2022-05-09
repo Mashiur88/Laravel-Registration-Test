@@ -9,7 +9,11 @@
         <li><a href="dropdown.php">Address</a></li>
         <li><a href="userlist.php">User List</a></li>
         <li><a href="login.php">Login</a></li>
-        
+        <?php
+        if(isset($_SESSION['user']))
+        {   ?>
+        <li><a href="./controller/logout.php">Logout</a></li>
+        <?php } ?> 
     </ul>
 </div>
 

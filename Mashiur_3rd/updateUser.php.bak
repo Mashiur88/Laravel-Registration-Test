@@ -17,16 +17,16 @@ include "header.php";
             <div id="state">
             <label>Division</label>
                 <select id="division" name="division" onchange="showDistrict(this.value)">
+                    <option value='0'>Select Division</option>
                     <?php
-                       if(isset($value['division']))
-                           {
-                            echo "<option value=".$value['divId'].">". $value['division'] ."</option>";
-                           }
-                            else 
-                            { echo "<option value='0'>Select Division</option>"; }
                        foreach($divisions as $div)
                         {
-                           echo "<option value=".$div['id'].">". $div['name'] ."</option>";
+                           if($value['division'] == $div['id'])
+                           {
+                            echo "<option value=".$div['id']."selected>". $div['name'] ."</option>";
+                           }
+                            else 
+                            { echo "<option value=".$div['id'].">". $div['name'] ."</option>"; }
                         } 
                     ?>
                 </select><br> 
@@ -34,25 +34,13 @@ include "header.php";
             <div id="zilla">
             <label>District</label>
             <select name="district" id="district" onchange="showThana(this.value)"> 
-              <?php  if(isset($value['district']))
-                    {
-                     echo "<option value=".$value['dId'].">". $value['district'] ."</option>";
-                    }
-                     else 
-                     { echo "<option value='0'>Select District</option>"; }
-              ?>
+                <option value="<?php echo $value['district'] ?>">Select District</option>
             </select><br>
             </div>
             <div id="upazilla">
             <label>Thana</label>
             <select name="thana" id="thana"> 
-                <?php  if(isset($value['thana']))
-                    {
-                     echo "<option value=".$value['tId'].">". $value['thana'] ."</option>";
-                    }
-                     else 
-                     { echo "<option value='0'>Select Thana</option>"; }
-              ?>
+                <option value="<?php echo $value['thana'] ?>">Select Thana</option>
             </select><br>
             </div>    
    <!--         <label>Hobby:</label>

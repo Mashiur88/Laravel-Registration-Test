@@ -26,7 +26,7 @@ include "header.php";
         <div>
         <label>Division</label>
         <select id="division" name="division" onchange="showDistrict(this.value)">
-            <option value="">Select Division</option>
+            <option value='0'>Select Division</option>
             <?php
             foreach($divisions as $div)
             {
@@ -36,11 +36,11 @@ include "header.php";
         </select><br>   
         <label>District</label>
         <select name="district" id="district" onchange="showThana(this.value)"> 
-            <option value="">Select District</option>
+            <option value='0'>Select District</option>
         </select><br>
         <label>Thana</label>
         <select name="thana" id="thana"> 
-            <option value="">Select Thana</option>
+            <option value='0'>Select Thana</option>
         </select>
         </div>
     </div>

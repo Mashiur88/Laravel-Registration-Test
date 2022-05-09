@@ -17,7 +17,7 @@ $sql = "SELECT * FROM district where division_id = $id";
 $districts = mysqli_query($conn, $sql);
 if (mysqli_num_rows($districts) > 0) 
 {
-         echo "<option value=''>Select District</option>";
+         echo "<option value='0'>Select District</option>";
     while ($row = mysqli_fetch_assoc($districts)) 
         {
             echo "<option value=".$row['id'].">". $row['name'] ."</option>";
@@ -25,6 +25,6 @@ if (mysqli_num_rows($districts) > 0)
 }
 else
 {
-    echo "<option value=''>No District Found</option>";
+    echo "<option value='0'>No District Found</option>";
 }
 ?>

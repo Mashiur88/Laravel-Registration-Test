@@ -20,7 +20,7 @@ p.header
 .main-container
 {
     width: auto;
-    height: 580px;
+    min-height: 580px;
     display: flex;
     text-align: justify;
     text-justify: inherit;
@@ -36,6 +36,7 @@ p.header
     border-style: solid;
     width: 79%;
     text-align: center;
+    min-height: 580px;
 }
 .footer {
     background-color: red;
@@ -62,7 +63,8 @@ li a:hover {
     background-color: #4bd647;
 }
 
-li a {
+li a 
+{
     display: block;
     color: #000;
     padding: 8px 16px;
@@ -171,6 +173,30 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.address
+{
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px;
+  margin-left: 100px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+select.address
+{
+   width: 80%;
+  padding: 12px 20px;
+  margin: 8px;
+  margin-left: 40px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 #send
 {
   width: 12%;
@@ -183,7 +209,8 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover 
+{
   background-color: #3ae3fc;
 }
 

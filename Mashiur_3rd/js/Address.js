@@ -2,7 +2,7 @@ function showDistrict(id)
 {   //name = document.getElementById("division").value;
     //window.alert(id);
      
-    if (id === "") 
+    if (id === 0) 
     {
     document.getElementById("district").innerHTML = "<option value=''>No District Found</option>";
     document.getElementById("thana").innerHTML = "<option value=''>No Thana Found</option>";
@@ -24,7 +24,7 @@ function showDistrict(id)
 function showThana(id)
 {   //name = document.getElementById("division").value;
     //window.alert(id);
-    if (id === "") 
+    if (id === 0) 
     {
     document.getElementById("thana").innerHTML = "<option value=''>No Thana Found</option>";
     return;
