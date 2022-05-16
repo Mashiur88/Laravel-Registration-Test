@@ -23,10 +23,11 @@ include "header.php";
 //                        } else {
 //                            echo "<option value='0'>Select Division</option>";
 //                        }
-                        foreach ($divisions as $div) {  ?>
-                            
-                                <option value="<?php echo $div['id'] ?>" <?php echo ($div['id'] === $value['divId'])? "selected" : "" ?> > <?php echo $div['name'] ?></option>;
-                        <?php 
+                        foreach ($divisions as $div) {
+                            ?>
+
+                            <option value="<?php echo $div['id'] ?>" <?php echo ($div['id'] === $value['divId']) ? "selected" : "" ?> > <?php echo $div['name'] ?></option>;
+                            <?php
                         }
                         ?>
                     </select><br> 
@@ -34,25 +35,25 @@ include "header.php";
                 <div id="zilla">
                     <label class="form-label">District</label>
                     <select class="form-select" name="district" id="district" onchange="showThana(this.value)"> 
-    <?php
-    if (isset($value['district'])) {
-        echo "<option value=" . $value['dId'] . ">" . $value['district'] . "</option>";
-    } else {
-        echo "<option value='0'>Select District</option>";
-    }
-    ?>
+                        <?php
+                        if (isset($value['district'])) {
+                            echo "<option value=" . $value['dId'] . ">" . $value['district'] . "</option>";
+                        } else {
+                            echo "<option value='0'>Select District</option>";
+                        }
+                        ?>
                     </select><br>
                 </div>
                 <div id="upazilla">
                     <label class="form-label">Thana</label>
                     <select class="form-select" name="thana" id="thana"> 
-    <?php
-    if (isset($value['thana'])) {
-        echo "<option value=" . $value['tId'] . ">" . $value['thana'] . "</option>";
-    } else {
-        echo "<option value='0'>Select Thana</option>";
-    }
-    ?>
+                        <?php
+                        if (isset($value['thana'])) {
+                            echo "<option value=" . $value['tId'] . ">" . $value['thana'] . "</option>";
+                        } else {
+                            echo "<option value='0'>Select Thana</option>";
+                        }
+                        ?>
                     </select><br>
                 </div>    
                 <!--         <label>Hobby:</label>
@@ -60,9 +61,9 @@ include "header.php";
                          <input type="checkbox" name="hobby1" id="hobby1" value="Gaming">Gaming<br>
                          <input type="checkbox" name="hobby2" id="hobby2" value="Drawing">Drawing<br>  -->
                 <label class="form-label">Gender:</label>
-    <?php
-    if ($value['gender'] == 1) {
-        ?>
+                <?php
+                if ($value['gender'] == 1) {
+                    ?>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender" value="1" checked><label class="form-check-label">Male</label>
                     </div>
@@ -76,7 +77,7 @@ include "header.php";
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender" value="2" checked><label class="form-check-label">Female</label><br>
                     </div>
-    <?php } ?>
+                <?php } ?>
                 <label class="form-label">Status:</label>
                 <?php
                 if ($value['status'] == 1) {
@@ -97,7 +98,7 @@ include "header.php";
     <?php } ?>
 
                 <input class="align-middle btn btn-warning" type="submit" name="save" value="Update">
-            <?php } ?>
+<?php } ?>
         </form>
     </div>
 </div>
