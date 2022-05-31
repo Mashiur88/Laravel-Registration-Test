@@ -54,7 +54,8 @@ $result = $user->userlist();
                     }
                     if ($row["status"] == 0) {
                         $temp1 = "Inactive";
-                    } else if ($row["status"] == 1) {
+                    } else if ($row["status"] == 1) 
+                    {
                         $temp1 = "Active";
                     }
                     $id = $row['id'];

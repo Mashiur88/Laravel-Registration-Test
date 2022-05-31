@@ -9,6 +9,43 @@ class User {
     public function __construct() {
         $this->connect2 = new DB();
     }
+    public function getAddress($id)
+    {
+        $table = "userlist";
+        $columns = ['userlist.address as address','division.name as division','district.name as district','thana.name as thana'];
+        $conditions = [
+                [
+                'col' => 'userlist.id',
+                'val' => "$id",
+                'opt' => '=',
+                'logopt' => ''
+                ]
+            ];
+        $join = 
+        [
+            [
+                'type' => 'LEFT JOIN',
+                'joining_table' => '`division`',
+                'j_pivot' => 'userlist.division',
+                'm_pivot' => 'division.id',
+            ],
+            [
+                'type' => 'LEFT JOIN',
+                'joining_table' => '`district`',
+                'j_pivot' => 'userlist.district',
+                'm_pivot' => 'district.id',
+            ],
+                [
+                'type' => 'LEFT JOIN',
+                'joining_table' => '`thana`',
+                'j_pivot' => 'userlist.thana',
+                'm_pivot' => 'thana.id',
+            ]
+        ];
+        $address = $this->connect2->select($columns,$table,$join,$conditions,"","");
+        return $address;
+        //return ['address' => $address];
+    }
     public function getDivision()
     {
         $table= "division";
@@ -36,8 +73,9 @@ class User {
                 'logopt' => ''
                 ]
             ];
-        $join = [
-                [
+        $join = 
+        [
+            [
                 'type' => 'LEFT JOIN',
                 'joining_table' => '`division`',
                 'j_pivot' => 'userlist.division',
@@ -60,7 +98,7 @@ class User {
         return $person;
     }
     
-    public function updateData($id,$array)
+    public function updateData($id,$set)
     {
           $table = "userlist";
           $condition = [
@@ -71,7 +109,8 @@ class User {
                 'logopt' => ''
                 ]
               ];
-          $set = "first_name='$fname', last_name='$lname', address='$address', gender='$gender', status='$status', division=$division, district=$district, thana=$thana";
+              
+          //$set = "first_name='$fname', last_name='$lname', address='$address', gender='$gender', status='$status', division=$division, district=$district, thana=$thana";
           $result = $this->connect2->update($table,$set,$condition);
           return $result;
     }

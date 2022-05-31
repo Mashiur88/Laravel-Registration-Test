@@ -10,9 +10,9 @@ $person = $user->userData($id);
 
 //print_r($user);
 //
-if (isset($_POST['save'])) {
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+    $fname = $_POST['first_name'];
+    $lname = $_POST['last_name'];
     $address = $_POST['address'];
     $gender = $_POST['gender'];
     $status = $_POST['status'];
@@ -25,7 +25,7 @@ if (isset($_POST['save'])) {
     if ($result === TRUE) 
     {
         echo "New record Updated successfully";
-        header("Location: userlist.php");
+        header("Location: ../view/userlist.php");
     } 
     else 
     {

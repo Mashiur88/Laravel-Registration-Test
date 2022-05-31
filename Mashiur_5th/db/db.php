@@ -55,7 +55,7 @@ class DB
     {
         $condition = !empty($condition) ? $this->where($condition) : '';
         $sql = "DELETE FROM `" . $table . "` $condition";
-        echo $sql;
+        //echo $sql;
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -66,7 +66,7 @@ class DB
         $values = !empty($values) ? implode(',', $values) : '';
         $sql = "INSERT INTO ".$table." (".$columns." )
         VALUES ( ".$values.")";
-        echo $sql;
+        //echo $sql;
         $feedback = $this->conn->query($sql);
         var_dump($feedback);
         return $feedback;
@@ -88,7 +88,7 @@ class DB
         
         //echo $columns;
         $sql = "SELECT ".$columns." FROM ".$table." ".$condition." ".$limit." ".$orderby;
-        echo $sql;
+        //echo $sql;
         $y = $this->conn->query($sql);
         
         //$z = $y->fetch_assoc();
@@ -101,8 +101,15 @@ class DB
     }
     public function update($table,$set,$condition)
     {
-        
-        $sql = "UPDATE ".$table." SET ".$set." ".$condition;
+        $str="";
+        $condition = !empty($condition) ? $this->where($condition) : '';
+        foreach($set as $key => $value)
+        {
+            $str .= " $key = '$value',";
+        }
+        $str = rtrim($str,',');
+        $sql = "UPDATE ".$table." SET".$str." ".$condition;
+        echo $sql;
         $feedback = $this->conn->query($sql);
         return $feedback;
     }

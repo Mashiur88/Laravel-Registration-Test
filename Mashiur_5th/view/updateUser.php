@@ -9,9 +9,9 @@ include "header.php";
         <form action="" method='POST' enctype=''>
             <?php foreach ($person as $value) { ?>
                 <label class="form-label">First Name:</label>
-                <input class="form-control" type="text" name="fname" id="fname" value="<?php echo $value['first_name'] ?>"><br>
+                <input class="form-control" type="text" name="first_name" id="first_name" value="<?php echo $value['first_name'] ?>"><br>
                 <label class="form-label">Last Name:</label>
-                <input class="form-control" type="text" name="lname" id="lname" value="<?php echo $value['last_name'] ?>"><br>
+                <input class="form-control" type="text" name="last_name" id="last_name" value="<?php echo $value['last_name'] ?>"><br>
                 <label class="form-label">Address:</label>
                 <textarea class="form-control" name="address" id="address" ><?php echo $value['address'] ?></textarea><br>
                 <div id="state">
@@ -103,7 +103,7 @@ include "header.php";
                     </div>
                 <?php } ?>
 
-                <input class="align-middle btn btn-warning" type="submit" name="save" value="Update">
+                <input class="align-middle btn btn-warning" type="submit" value="Update">
             <?php } ?>
         </form>
     </div>
