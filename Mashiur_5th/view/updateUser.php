@@ -1,5 +1,5 @@
 <?php
-include "./controller/actionUpdate.php";
+include "../controller/actionUpdate.php";
 include "header.php";
 ?>
 <div class="container-fluid p-0 m-0 row">
@@ -7,7 +7,7 @@ include "header.php";
     <div class="container-fluid col-lg-10 bg-info">
         <h3>Update Form</h3>
         <form action="" method='POST' enctype=''>
-            <?php foreach ($user as $value) { ?>
+            <?php foreach ($person as $value) { ?>
                 <label class="form-label">First Name:</label>
                 <input class="form-control" type="text" name="fname" id="fname" value="<?php echo $value['first_name'] ?>"><br>
                 <label class="form-label">Last Name:</label>
@@ -36,9 +36,12 @@ include "header.php";
                     <label class="form-label">District</label>
                     <select class="form-select" name="district" id="district" onchange="showThana(this.value)"> 
                         <?php
-                        if (isset($value['district'])) {
+                        if (isset($value['district'])) 
+                        {
                             echo "<option value=" . $value['dId'] . ">" . $value['district'] . "</option>";
-                        } else {
+                        } 
+                        else 
+                        {
                             echo "<option value='0'>Select District</option>";
                         }
                         ?>
@@ -48,9 +51,12 @@ include "header.php";
                     <label class="form-label">Thana</label>
                     <select class="form-select" name="thana" id="thana"> 
                         <?php
-                        if (isset($value['thana'])) {
+                        if (isset($value['thana'])) 
+                        {
                             echo "<option value=" . $value['tId'] . ">" . $value['thana'] . "</option>";
-                        } else {
+                        } 
+                        else 
+                        {
                             echo "<option value='0'>Select Thana</option>";
                         }
                         ?>

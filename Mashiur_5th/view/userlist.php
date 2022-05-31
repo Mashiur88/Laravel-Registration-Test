@@ -73,7 +73,7 @@ $result = $user->userlist();
                         <td id='cxngstatus<?php echo $id; ?>'><?php echo $temp1 ?></td>
                         <td id='cxngstatusBtn<?php echo $id; ?>'><button class="btn btn-primary" onclick="changeStatus(<?php echo "$id,$stat"; ?>)"><?php echo($row['status'] == '1') ? 'Inactive' : 'Active'; ?></button></td>
                         <td><a href = 'updateUser.php?id=<?php echo $row["id"] ?>'><i class="fa-solid fa-pen"></i></a></td>
-                        <td><a href = './controller/actionDelete.php?id=<?php echo $row["id"] ?>'><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href = '../controller/actionDelete.php?id=<?php echo $row["id"] ?>'><i class="fa-solid fa-trash"></i></a></td>
                     </tr>
                     <!-- Modal -->
                         <div class="modal" id="myModal">

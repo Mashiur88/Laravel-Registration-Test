@@ -1,18 +1,17 @@
 <?php
-include "../db/db.php";
+include "../class/user.php";
 session_start();
 $id = $_GET['id'];
-$table = "userlist";
+$user = new User();
+$result = $user->delete($id);
 
-//Start:: function to Delete
-$connect = new DB();
-//var_dump($connect);exit;
-$result = $connect->delete($table, $id);
-//Stop:: function to Delete
-if ($result === TRUE) {
+if ($result === TRUE) 
+{
     echo "New record Deleted successfully";
-    header("Location: ../userlist.php");
-} else {
-    echo "Error: " . $sql . "<br>" . $this->conn->connect_error;
+    header("Location: ../view/userlist.php");
+} else 
+{
+    
+    //echo "Error: " . $sql . "<br>" . $this->conn->connect_error;
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
-    include('../db/db.php');
-    $connect3 = new DB();
-    $table= "division";
-    $columns = "*";
-    $divisions = $connect3->select($columns,$table,"","","","","");
+    include "../class/user.php";
+    
+    $user = new User();
+    $divisions = $user->getDivision();
+    
 if (isset($_POST['save'])) {  
     
     if (isset($_POST['fname'])) {
@@ -48,10 +48,11 @@ if (isset($_POST['save'])) {
     
     if(isset($gender)&&isset($status))
     {
-    $table="userlist";
-    $columns = "`first_name`, `last_name`,`user_name`, `password`, `address`, `gender`,`division`,`district`,`thana`,`status`";
-    $values = "'$fName', '$lName', '$uName', '$pass', '$address', '$gender', $division , $district , $thana  ,'$status'";
-    $feedback = $connect3->insert($table,$columns,$values);
+    $values = ["'$fName'", "'$lName'", "'$uName'", "'$pass'", "'$address'", $gender, $division , $district , $thana  ,$status];
+    $feedback = $user->insertData($values);
+    
+    
+    
     //$sql = "INSERT INTO `userlist` (`first_name`, `last_name`,`user_name`, `password`, `address`, `gender`,`division`,`district`,`thana`,`status`)
     //    VALUES ('$fName', '$lName', '$uName', '$pass', '$address', '$gender', $division , $district , $thana  ,'$status')";
     
@@ -60,11 +61,10 @@ if (isset($_POST['save'])) {
     } 
     else 
     {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         exit;
     }
     }
-    $connect3->conn->close();
 }
 
 

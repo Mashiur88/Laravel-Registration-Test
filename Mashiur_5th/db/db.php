@@ -51,20 +51,24 @@ class DB
     
 
     
-    public function delete($table, $id) 
+    public function delete($table,$condition) 
     {
-        $sql = "DELETE FROM `" . $table . "` WHERE id =$id";
-        //print_r($sql);
+        $condition = !empty($condition) ? $this->where($condition) : '';
+        $sql = "DELETE FROM `" . $table . "` $condition";
+        echo $sql;
         $result = $this->conn->query($sql);
         return $result;
     }
     
     public function insert($table,$columns,$values)
     {
+        $columns = !empty($columns) ? implode(',', $columns) : '*';
+        $values = !empty($values) ? implode(',', $values) : '';
         $sql = "INSERT INTO ".$table." (".$columns." )
         VALUES ( ".$values.")";
+        echo $sql;
         $feedback = $this->conn->query($sql);
-        //print_r($sql);
+        var_dump($feedback);
         return $feedback;
     }
     
@@ -97,6 +101,7 @@ class DB
     }
     public function update($table,$set,$condition)
     {
+        
         $sql = "UPDATE ".$table." SET ".$set." ".$condition;
         $feedback = $this->conn->query($sql);
         return $feedback;
